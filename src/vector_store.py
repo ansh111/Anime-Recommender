@@ -14,11 +14,12 @@ class VectorStoreBuilder:
        
     def build_and_save_vector_store(self):
         # Load CSV data
+    
         loader = CSVLoader(file_path=self.csv_path, encoding='utf-8',)
         documents = loader.load()
 
         # Split text into chunks
-        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
         split_docs = text_splitter.split_documents(documents)
 
         # Create and persist the vector store
@@ -34,7 +35,6 @@ class VectorStoreBuilder:
     def load_vector_store(self):
         # Load the persisted vector store
         vector_store = Chroma(
-            embedding=self.embeddings,
             persist_directory=self.persist_dir
         )
         return vector_store

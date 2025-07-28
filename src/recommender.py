@@ -3,7 +3,7 @@ from langchain_groq import ChatGroq
 from src.prompt_template import get_anime_prompt
 
 class Recommender:
-    def __init__(self,retriever:str,api_key:str,model_name:str):
+    def __init__(self,retriever,api_key:str,model_name:str):
         self.retriever = retriever
         self.api_key = api_key
         self.model_name = model_name
