@@ -1,5 +1,5 @@
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_community.document_loaders import CSVLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -35,7 +35,8 @@ class VectorStoreBuilder:
     def load_vector_store(self):
         # Load the persisted vector store
         vector_store = Chroma(
-            persist_directory=self.persist_dir
+            persist_directory=self.persist_dir,
+            embedding_function=self.embeddings
         )
         return vector_store
 
